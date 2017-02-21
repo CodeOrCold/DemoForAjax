@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$("#loadNoteBtn").click(function(){
+					//清空原油列表
+					$("#note_list").empty();
+					
+					$.ajax({
+						url:"ajax01.do",
+						type:"POST",
+						dataType:"JSON",
+						success:function(result){
+							for(var i=0;i<result.length;i++){
+								var id = result[i].id;
+								var name = result[i].name;
+								
+								//拼li
+								var s_li = "<li>"+name+"</li>";
+								var $li = $(s_li);
+								$li.data("noteId",id);
+								
+								$("#note_list").append($li);
+							}
+						}
+					});
+				});
+			});
+		
+		</script>
+		
+	</head>
+	<body>
+		<input id="loadNoteBtn" type="button" value="显示笔记列表">
+		<hr/>
+		<ul id="note_list">
+		</ul>
+		
+	</body>
+</html>

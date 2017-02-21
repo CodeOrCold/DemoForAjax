@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	
+	<script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+	<script type="text/javascript">
+	//v1是json对象数组
+		var v1=[
+			{id:"01",name:"杭州"},
+			{id:"02",name:"苏州"},
+			{id:"03",name:"上海"}
+			];
+		$(function(){
+			//页面载入完毕执行
+			//解析v1生产option
+			for(var i=0;i<v1.length;i++){
+				var id = v1[i].id;
+				var name = v1[i].name;
+				//拼一个option字符串
+				var s_opt = '<option value="'+id+'">'+name+'</option>';
+				var $opt = $(s_opt);//将字符串转成jQuery对象
+				//将option添加到select中
+				$("#s1").append($opt);
+				
+				
+			}
+		});
+	</script>
+	
+	<script type="text/javascript">
+		//下拉单
+		$(function(){
+			$("#s1").change(function(){
+				//var name = $("#s1").val();
+				var name = $("#s1 option:selected").html();
+				$("#name_span").html(name);
+				
+				var s_li = "<li>"+name+"</li>"
+				var $li = $(s_li);
+				$("#u1").append($li);
+				
+			});
+		});
+	
+	</script>
+
+</head>
+
+
+<body>
+	省份:
+	<select id="s1">
+	
+	</select>
+	你选择的是:
+	<span id="name_span"></span>
+	
+	<ul id="u1">
+	
+	</ul>
+
+</body>
+
+</html>
